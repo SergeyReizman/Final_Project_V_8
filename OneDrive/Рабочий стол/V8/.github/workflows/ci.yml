@@ -1,0 +1,49 @@
+name: CI and Cache Clear
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Original Continuous Integration Job
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js version 20
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      # Step 3: Install frontend dependencies
+      - name: Install dependencies
+        run: |
+          cd frontend
+          npm install
+
+      # Step 4: Run frontend tests
+      - name: Run tests
+        run: |
+          cd frontend
+          npm test
+
+  # Cache Clear Job
+  clear-cache:
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Clear Cache
+      - name: Clear Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            frontend/node_modules
+          key: ${{ runner.os }}-clear-cache-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-clear-cache-

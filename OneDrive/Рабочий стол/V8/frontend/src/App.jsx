@@ -90,51 +90,90 @@ const App = () => {
 
         {/* Display the button to the Netlify calculator with added margin */}
         <div style={{ color: "green", textAlign: "center", marginTop: "20px" }}>
-          <p>Explore our Business Calculator:</p>
+          <p>Explore our Business Calculator</p>
           <button
             onClick={() => window.open("https://zingy-mousse-b7755d.netlify.app/", "_blank", "noopener noreferrer")}
             style={{ display: "block", margin: "20px auto", padding: "10px 20px", backgroundColor: "#3498db", color: "#fff", borderRadius: "5px", cursor: "pointer" }}
           >
             Calculator Link
           </button>
-        </div>
 
-        {/* Button for the "Project Specification Document" */}
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <a
-            href="https://preeminent-basbousa-497ee5.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
+        </div>
+        {/* Display the button to the Ocean Calendar with Sea colors */}
+        <div style={{ color: "#0077cc", textAlign: "center", marginTop: "20px" }}>
+          <p>Explore our Ocean-Inspired Calendar</p>
+          <button
+            onClick={() => window.open("https://lustrous-naiad-03cfad.netlify.app//", "_blank", "noopener noreferrer")}
+            style={{
+              display: "block",
+              margin: "20px auto",
+              padding: "10px 20px",
+              backgroundColor: "#00a0a0",
+              color: "#fff",
+              borderRadius: "5px",
+              cursor: "pointer"
+            }}
           >
-            <button style={{ backgroundColor: "blue", color: "white", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>
-              Project Specification Document
-            </button>
-          </a>
+            Ocean Calendar Link
+          </button>
         </div>
-
-        {/* Empty line */}
-        <div style={{ marginTop: "20px" }}></div>
-
-        {/* Button for the LinkedIn profile */}
-        <div style={{ textAlign: "center", marginTop: "20px" }}>
-          <a
-            href="https://www.linkedin.com/in/sergey-reizman/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button style={{ backgroundColor: "#0077b5", color: "white", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>
-              LinkedIn Profile
-            </button>
-          </a>
-        </div>
-
-        {/* Empty line after LinkedIn button */}
-        <div style={{ marginTop: "20px" }}></div>
-
-        {/* 20px margin at the bottom */}
-        <div style={{ marginBottom: "20px" }}></div>
       </div>
+      {/* Display the button to the To-Do List */}
+      <div style={{ color: "#0077cc", textAlign: "center", marginTop: "20px" }}>
+        <p>Explore our To-Do List</p>
+        <button
+          onClick={() => window.open("https://shiny-puffpuff-66cca6.netlify.app/",
+            "_blank", "noopener noreferrer")}
+          style={{
+            display: "block",
+            margin: "20px auto",
+            padding: "10px 20px",
+            backgroundColor: "#8B4513", // Brown color
+            color: "#fff",
+            borderRadius: "5px",
+            cursor: "pointer"
+          }}
+        >
+          To-Do List Link
+        </button>
+      </div>
+
+      {/* Button for the "Project Specification Document" */}
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <a
+          href="https://preeminent-basbousa-497ee5.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button style={{ backgroundColor: "blue", color: "white", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>
+            Project Specification Document
+          </button>
+        </a>
+      </div>
+
+      {/* Empty line */}
+      <div style={{ marginTop: "20px" }}></div>
+
+      {/* Button for the LinkedIn profile */}
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <a
+          href="https://www.linkedin.com/in/sergey-reizman/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button style={{ backgroundColor: "#0077b5", color: "white", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>
+            LinkedIn Profile
+          </button>
+        </a>
+      </div>
+
+      {/* Empty line after LinkedIn button */}
+      <div style={{ marginTop: "20px" }}></div>
+
+      {/* 20px margin at the bottom */}
+      <div style={{ marginBottom: "20px" }}></div>
     </div>
+
   );
 };
 

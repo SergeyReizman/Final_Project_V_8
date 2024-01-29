@@ -1,0 +1,182 @@
+<!-- To-do list associated with the Golani Brigade, 
+complete with styling 
+and JavaScript functionality.-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golani Brigade To-Do List</title>
+
+    <!-- Styling section -->
+    <style>
+        /* Styling for the entire page */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 20px;
+        }
+
+        /* Styling for the to-do list container */
+        #todo-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #d2b48c; /* Brown tone for the container */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the input field */
+        #todo-input {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #a0522d; /* Brown tone for the border */
+            border-radius: 5px;
+        }
+
+        /* Styling for the add button */
+        #add-btn {
+            padding: 10px;
+            background-color: #adff2f; /* Green-yellow tone for the button */
+            color: #333; /* Dark text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Styling for the task list */
+        #task-list {
+            text-align: left;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Styling for individual task items */
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #a0522d; /* Brown tone for the border */
+        }
+
+        /* Styling for the delete button */
+        .delete-btn {
+            background-color: #adff2f; /* Green-yellow tone for the button */
+            color: #333; /* Dark text color */
+            border: none;
+            padding: 8px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Styling for the footer */
+        footer {
+            margin-top: 20px;
+            font-size: 1.8em; /* Three times bigger font size */
+            color: #333; /* Dark text color */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- To-Do List container -->
+    <div id="todo-container">
+        <h1>Golani Brigade To-Do List</h1>
+
+        <!-- Input field for adding tasks -->
+        <input type="text" id="todo-input" placeholder="Add a new task...">
+
+        <!-- Button to add tasks -->
+        <button id="add-btn">Add</button>
+
+        <!-- Task list -->
+        <ul id="task-list"></ul>
+    </div>
+
+    <!-- JavaScript code -->
+    <script>
+        // Wait for the DOM content to be fully loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get references to HTML elements
+            const todoInput = document.getElementById('todo-input');
+            const addBtn = document.getElementById('add-btn');
+            const taskList = document.getElementById('task-list');
+
+            // Retrieve tasks from local storage
+            const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+            // Populate task list with saved tasks
+            savedTasks.forEach(taskText => {
+                addTaskToUI(taskText);
+            });
+
+            // Event listener for "Add" button click
+            addBtn.addEventListener('click', function () {
+                const taskText = todoInput.value.trim();
+                if (taskText !== '') {
+                    addTaskToUI(taskText);
+                    saveTasksToLocalStorage();
+                    todoInput.value = '';
+                }
+            });
+
+            // Event listener for "Enter" key press in the input field
+            todoInput.addEventListener('keyup', function (event) {
+                if (event.key === 'Enter') {
+                    const taskText = todoInput.value.trim();
+                    if (taskText !== '') {
+                        addTaskToUI(taskText);
+                        saveTasksToLocalStorage();
+                        todoInput.value = '';
+                    }
+                }
+            });
+
+            // Function to add a new task to UI
+            function addTaskToUI(taskText) {
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+                `;
+                taskList.appendChild(taskItem);
+            }
+
+            // Function to delete a task
+            window.deleteTask = function (element) {
+                const taskItem = element.closest('.task-item');
+                taskList.removeChild(taskItem);
+                saveTasksToLocalStorage();
+            };
+
+            // Function to save tasks to local storage
+            function saveTasksToLocalStorage() {
+                const tasks = Array.from(document.querySelectorAll('.task-item span')).map(span => span.textContent);
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+        });
+    </script>
+
+    <!-- Footer with provided text -->
+    <footer>
+        The emblem of the Golani Brigade features a green olive tree with roots on a yellow background. Green and yellow
+        are the colors of the meadows of the Golan Heights, where the brigade was originally stationed. The olive tree,
+        known for its strong roots that penetrate deep into the soil, symbolizes the brigade's strong connection to
+        Israel's historical heritage. The yellow background serves as a reminder of the role the brigade played in the
+        1948 war in the southern part of the country, where it successfully stormed Eilat, the southernmost city in
+        Israel. The first soldiers of the brigade were Jewish farmers and recent immigrants. The brown berets worn by the
+        soldiers symbolize the land of Israel, and their color sharply contrasts with the bright colors of berets worn by
+        soldiers from other infantry brigades in the Israel Defense Forces (IDF), such as purple, bright green, and red.
+        The brigade received its distinctive berets as a recognition of the merits of soldiers from its special forces
+        unit, Sayeret Golani, during the operation to free hostages at Entebbe Airport, Uganda, in 1976.
+    </footer>
+</body>
+
+</html>

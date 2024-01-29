@@ -1,6 +1,14 @@
 
 # HooBank - Modern UI/UX Website
 
+Discover a rich set of banking functions, personalization options, 
+and security measures designed to elevate your financial experience. Dive into the future of banking with HooBank. 
+For a detailed feature breakdown, refer to the 
+
+[Project Specification Document]
+
+(https://65b2bd17774d3328a0371504--preeminent-basbousa-497ee5.netlify.app/).
+
 # Bank Management System
 
 Build Status:

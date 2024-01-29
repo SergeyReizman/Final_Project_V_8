@@ -150,7 +150,18 @@ const App = () => {
           </button>
         </a>
       </div>
-
+      {/* Button for Expense Manager */}
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <a
+          href="https://cute-beijinho-40cf41.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button style={{ backgroundColor: "#4CAF50", color: "white", padding: "10px 20px", borderRadius: "5px", cursor: "pointer" }}>
+            Expense Manager Link
+          </button>
+        </a>
+      </div>
       {/* Empty line */}
       <div style={{ marginTop: "20px" }}></div>
 

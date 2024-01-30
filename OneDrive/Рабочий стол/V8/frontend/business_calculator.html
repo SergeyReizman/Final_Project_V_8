@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for character set and viewport settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Title for the document -->
+  <title>Handsome Calculator</title>
+  
+  <!-- Styling for the calculator interface -->
+  <style>
+    /* Styling for the body */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #2c3e50;
+    }
+
+    /* Styling for the calculator container */
+    #calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      max-width: 300px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      color: #fff;
+    }
+
+    /* Styling for the input box */
+    #inputBox {
+      grid-column: span 4;
+      padding: 15px;
+      font-size: 28px;
+      text-align: right;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+    }
+
+    /* Styling for the calculator buttons */
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    /* Hover effect for buttons */
+    button:hover {
+      background-color: #34495e;
+    }
+
+    /* Active state for buttons */
+    button:active {
+      background-color: #2c3e50;
+      transform: scale(0.95);
+    }
+
+    /* Styling for operation buttons */
+    button.operation {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+
+    /* Styling for equals button */
+    button.equals {
+      background-color: #2ecc71;
+      color: #fff;
+    }
+
+    /* Styling for action buttons */
+    button.action {
+      background-color: #bdc3c7;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Input box for displaying calculator input -->
+  <input id="inputBox" type="text" readonly>
+  
+  <!-- Calculator buttons container -->
+  <div id="calculator">
+    <!-- Numeric buttons and operation buttons -->
+    <button data-value="7">7</button>
+    <button data-value="8">8</button>
+    <button data-value="9">9</button>
+    <button class="operation" data-operation="/">/</button>
+    <button data-value="4">4</button>
+    <button data-value="5">5</button>
+    <button data-value="6">6</button>
+    <button class="operation" data-operation="*">*</button>
+    <button data-value="1">1</button>
+    <button data-value="2">2</button>
+    <button data-value="3">3</button>
+    <button class="operation" data-operation="-">-</button>
+    <button data-value="0">0</button>
+    <button class="operation" data-operation=".">.</button>
+    <!-- Action buttons -->
+    <button class="action" data-action="clear">AC</button>
+    <button class="operation" data-operation="+">+</button>
+    <!-- Equals button for evaluating expression -->
+    <button class="equals" data-action="equals">=</button>
+    <!-- Delete button for removing last character -->
+    <button class="action" data-action="delete">DEL</button>
+  </div>
+
+  <!-- JavaScript for calculator functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get input box and calculator buttons
+      const input = document.getElementById('inputBox');
+      const calculatorButtons = document.getElementById('calculator');
+      let currentInput = ''; // Variable to store current input
+
+      // Event listener for calculator button clicks
+      calculatorButtons.addEventListener('click', (e) => {
+        // Destructuring values, operation, and action from button dataset
+        const { value, operation, action } = e.target.dataset;
+
+        // Update current input based on button clicked
+        if (value) currentInput += value;
+        else if (operation) currentInput += operation === '=' ? '' : operation;
+        else if (action === 'clear') currentInput = '';
+        else if (action === 'delete') currentInput = currentInput.slice(0, -1);
+        else if (action === 'equals') evaluateExpression(); // Evaluate expression on equals button click
+
+        // Update input box with current input
+        input.value = currentInput;
+      });
+
+      // Function to evaluate the expression using JavaScript eval()
+      function evaluateExpression() {
+        try {
+          currentInput = String(eval(currentInput));
+        } catch (error) {
+          currentInput = 'Error'; // Display 'Error' if evaluation fails
+        }
+      }
+    });
+  </script>
+</body>
+</html>

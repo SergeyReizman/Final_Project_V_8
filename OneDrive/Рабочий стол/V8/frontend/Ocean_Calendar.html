@@ -1,0 +1,164 @@
+<!-- Aesthetically themed calendar with ocean-inspired colors 
+     and a dynamic layout for each month. 
+     The days of the week are color-coded, 
+     and the calendar is visually appealing with the specified styling.
+     Use it from Your mobile anywhere & everywhere-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean-Inspired Calendar</title>
+
+    <!-- Styling section -->
+    <style>
+        /* Styling for the entire page */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #b3e0ff;
+            /* Light blue background (resembling the sky) */
+            text-align: center;
+            margin: 20px;
+        }
+
+        /* Styling for the calendar table */
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        /* Styling for table headers and cells */
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid #80bfff;
+            /* Light blue border (resembling the ocean) */
+        }
+
+        /* Styling for table headers */
+        th {
+            background-color: #0077c2;
+            /* Dark blue background for the days of the week */
+            color: white;
+        }
+
+        /* Styling for table cells */
+        td {
+            background-color: #99c2ff;
+            /* Lighter blue background for calendar cells */
+        }
+
+        /* Styling for the additional line with the name */
+        .additional-line {
+            margin: 20px 0;
+            font-size: 1.5em;
+            color: #004080;
+            /* Dark blue text color */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page content section -->
+
+    <!-- Heading for the calendar -->
+    <h1>Ocean-Inspired Calendar - 2024</h1>
+
+    <!-- Additional line with the name -->
+    <div class="additional-line">
+        Sergey Reizman
+    </div>
+
+    <!-- Calendar table structure -->
+    <table>
+        <!-- Table body will be dynamically populated by JavaScript -->
+        <tbody id="calendar-body">
+        </tbody>
+    </table>
+
+    <!-- JavaScript code to generate the calendar -->
+    <script>
+        function generateCalendar(year) {
+            // Get the reference to the calendar body
+            const calendarBody = document.getElementById('calendar-body');
+
+            // Array representing months from 1 to 12
+            const months = Array.from({ length: 12 }, (_, i) => i + 1);
+
+            // Loop through each month
+            months.forEach(month => {
+                // Determine the number of days in the month
+                const daysInMonth = new Date(year, month, 0).getDate();
+
+                // Determine the day of the week for the first day of the month
+                const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
+
+                // Counter for populating days in the month
+                let dayCounter = 1;
+
+                // Create a table row for the month header
+                const row = document.createElement('tr');
+                const monthHeader = document.createElement('th');
+                // Set the month name using the Date object and the 'long' option for full month names
+                monthHeader.textContent = new Date(year, month - 1, 1).toLocaleString('default',
+                    { month: 'long' });
+                monthHeader.colSpan = 7; // Span the header across all 7 days
+                monthHeader.style.backgroundColor = '#0077c2'; // Set the background color
+                monthHeader.style.color = 'white'; // Set the text color
+                row.appendChild(monthHeader);
+                calendarBody.appendChild(row);
+
+                // Create a row for the days of the week header
+                const daysOfWeekRow = document.createElement('tr');
+                // Days of the week array
+                const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                // Loop through the days of the week
+                for (let i = 0; i < 7; i++) {
+                    const dayOfWeekCell = document.createElement('td');
+                    dayOfWeekCell.textContent = daysOfWeek[i];
+                    dayOfWeekCell.style.backgroundColor = '#0077c2'; // Set the background color
+                    dayOfWeekCell.style.color = 'white'; // Set the text color
+                    daysOfWeekRow.appendChild(dayOfWeekCell);
+                }
+                calendarBody.appendChild(daysOfWeekRow);
+
+                // Loop through each row (maximum of 6 rows for a month)
+                for (let i = 0; i < 6; i++) {
+                    // Create a table row
+                    const row = document.createElement('tr');
+
+                    // Loop through each day of the week
+                    for (let j = 0; j < 7; j++) {
+                        // Create a table cell
+                        const cell = document.createElement('td');
+                        // Set the background color for the cell
+                        cell.style.backgroundColor = '#99c2ff';
+
+                        // Check if the cell should be empty or contain a day
+                        if (i === 0 && j < firstDayOfMonth) {
+                            cell.textContent = '';
+                        } else if (dayCounter <= daysInMonth) {
+                            cell.textContent = dayCounter;
+                            dayCounter++;
+                        }
+
+                        // Append the cell to the row
+                        row.appendChild(cell);
+                    }
+
+                    // Append the row to the calendar body
+                    calendarBody.appendChild(row);
+                }
+            });
+        }
+
+        // Call the function to generate the calendar for the year 2024
+        generateCalendar(2024);
+    </script>
+</body>
+
+</html>

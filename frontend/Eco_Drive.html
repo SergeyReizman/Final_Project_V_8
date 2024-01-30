@@ -1,0 +1,179 @@
+<!--Eco Drive-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title of the webpage -->
+    <title>EcoDrive Israel</title>
+
+    <!-- Internal CSS styling for the webpage -->
+    <style>
+        /* Basic styling for the body element */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #7ED957;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Styling for the main heading */
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Styling for paragraphs */
+        p {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Styling for button hover effect */
+        button:hover {
+            background-color: #45A843;
+        }
+
+        /* Styling for navigation bar */
+        nav {
+            margin-top: 20px;
+        }
+
+        /* Styling for navigation links */
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Responsive styling for small screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+
+        /* Additional styling for visual appeal */
+        section {
+            margin: 40px 0;
+        }
+
+        /* Styling for images */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#map">Find Charging Stations</a>
+        <!-- Add more links as needed -->
+    </nav>
+
+    <!-- Main Content -->
+    <h1>EcoDrive Israel</h1>
+    <p>Make a difference! Choose sustainable transportation options.</p>
+
+    <!-- Button triggers the showInfo function -->
+    <button onclick="showInfo()">Find Charging Stations</button>
+
+    <!-- JavaScript Function -->
+    <script>
+        function showInfo() {
+            // Log to console for debugging
+            console.log("Button clicked! Redirecting...");
+
+            // Redirect to the specified URL
+            window.location.href = "https://www.electromaps.com/en/charging-stations/israel";
+        }
+    </script>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Learn more about our mission and commitment to sustainable transportation.</p>
+        <p>
+            <!-- Link to LinkedIn profile -->
+            <a href="https://www.linkedin.com/in/sergey-reizman-69768a190/" target="_blank">Linkedin Profile</a>.
+        </p>
+    </section>
+
+    <!-- Charging Station Map Section -->
+    <section id="map">
+        <h2>Charging Stations Map</h2>
+        <p>Discover electric vehicle charging stations near you on the interactive map.</p>
+        <!-- Add a dynamic map here (e.g., Google Maps integration) -->
+        <p>𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓽𝓸 Israel !</p>
+        <p>Explore Charging Stations in Israel
+            <a href="https://www.electromaps.com/en/charging-stations/israel" target="_blank">ELECTROMAPS</a>.
+        </p>
+        <p>Explore Charging Stations in Israel
+            <a href="https://map.electromaps.com/en/" target="_blank">CHARGING STATIONS MAPS</a>.
+        </p>
+    </section>
+
+    <!-- Green Image Section -->
+    <section id="green-image">
+        <h2>Green Image</h2>
+        <p>Check out our beautiful green image!</p>
+        <!-- Link to the Green.jpg image -->
+        <img class="green-image" src="Green.jpg" alt="Green Image">
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p style="font-size: 1.2em; color: #333;">Developed by Sergey Reizman 2024</p>
+    </footer>
+
+    <!-- JavaScript Function -->
+    <script>
+        function showInfo() {
+            // Alert to inform the user
+            alert("Discover electric vehicle charging stations near you!");
+        }
+    </script>
+
+    <!-- Welcome Message and YouTube Link -->
+    <p>𝓦𝓮𝓵𝓬𝓸𝓶𝓮 𝓽𝓸 The Nature of Israel !</p>
+    <p>Explore more on our <a href="https://www.youtube.com/watch?v=pS9e8mNuNE0&t=5s" target="_blank">YouTube
+            Channel</a>.</p>
+
+</body>
+
+</html>

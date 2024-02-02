@@ -122,7 +122,7 @@ const App = () => {
       <div style={{ color: "#0077cc", textAlign: "center", marginTop: "20px" }}>
         <p>Explore our To-Do List</p>
         <button
-          onClick={() => window.open("https://shiny-puffpuff-66cca6.netlify.app/",
+          onClick={() => window.open("https://sparkly-bunny-a5c231.netlify.app/",
             "_blank", "noopener noreferrer")}
           style={{
             display: "block",

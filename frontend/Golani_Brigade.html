@@ -1,167 +1,284 @@
-<!-- To-do list associated with the Golani Brigade, 
+<!-- To-do List and Expense Manager associated with the Golani Brigade, 
 complete with styling 
 and JavaScript functionality.-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Metadata section -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Golani Brigade To-Do List</title>
-
-    <!-- Styling section -->
+    <title>Combined App</title>
+    <!-- Shared Styling -->
     <style>
-        /* Styling for the entire page */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #f0f0f0;
+            /* Light background */
+            color: #333;
+            /* Dark text */
             text-align: center;
-            margin: 20px;
         }
 
+        /* Add your other shared styles here */
+
         /* Styling for the to-do list container */
-        #todo-container {
+        #todo-container,
+        #expense-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #d2b48c; /* Brown tone for the container */
+            background-color: #d2b48c;
+            /* Brown tone for the container */
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
         /* Styling for the input field */
-        #todo-input {
+        .todo-input,
+        .expense-input {
             width: 70%;
             padding: 10px;
             margin-bottom: 10px;
-            border: 1px solid #a0522d; /* Brown tone for the border */
+            border: 1px solid #a0522d;
+            /* Brown tone for the border */
             border-radius: 5px;
         }
 
         /* Styling for the add button */
-        #add-btn {
+        .add-btn,
+        .add-expense-button {
             padding: 10px;
-            background-color: #adff2f; /* Green-yellow tone for the button */
-            color: #333; /* Dark text color */
+            background-color: #adff2f;
+            /* Green-yellow tone for the button */
+            color: #333;
+            /* Dark text color */
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        /* Styling for the task list */
-        #task-list {
+        /* Styling for the task list and expense table */
+        .task-list,
+        #expenseList {
             text-align: left;
             padding: 0;
             list-style: none;
         }
 
-        /* Styling for individual task items */
-        .task-item {
+        /* Styling for individual task items and expense rows */
+        .task-item,
+        #expenseList tr {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            border-bottom: 1px solid #a0522d; /* Brown tone for the border */
+            border-bottom: 1px solid #a0522d;
+            /* Brown tone for the border */
         }
 
         /* Styling for the delete button */
-        .delete-btn {
-            background-color: #adff2f; /* Green-yellow tone for the button */
-            color: #333; /* Dark text color */
+        .delete-btn,
+        .clear-button,
+        .clear-total-button {
+            background-color: #adff2f;
+            /* Green-yellow tone for the button */
+            color: #333;
+            /* Dark text color */
             border: none;
             padding: 8px;
             border-radius: 3px;
             cursor: pointer;
         }
 
-        /* Styling for the footer */
+        /* Style for the footer text */
         footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #112240;
+            /* Dark blue background for the footer */
+            color: #64ffda;
+            /* Turquoise text for the footer */
+        }
+
+        /* Styling for the expense table */
+        #expenseTable {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
-            font-size: 1.8em; /* Three times bigger font size */
-            color: #333; /* Dark text color */
+        }
+
+        #expenseTable th,
+        #expenseTable td {
+            padding: 10px;
+            border-bottom: 1px solid #a0522d;
+            /* Brown tone for the border */
+            text-align: left;
+        }
+
+        #expenseTable th {
+            background-color: #adff2f;
+            /* Green-yellow tone for the header */
+        }
+
+        /* Styling for the total expenses */
+        .total-expenses {
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <!-- To-Do List container -->
+    <!-- Golani Brigade To-Do List Container -->
     <div id="todo-container">
         <h1>Golani Brigade To-Do List</h1>
-
-        <!-- Input field for adding tasks -->
-        <input type="text" id="todo-input" placeholder="Add a new task...">
-
-        <!-- Button to add tasks -->
-        <button id="add-btn">Add</button>
-
-        <!-- Task list -->
-        <ul id="task-list"></ul>
+        <input type="text" class="todo-input" placeholder="Add a new task...">
+        <button class="add-btn" onclick="addTask()">Add</button>
+        <ul class="task-list" id="task-list"></ul>
     </div>
 
-    <!-- JavaScript code -->
+    <!-- Expense Manager Container -->
+    <div id="expense-container">
+        <h1>Expense Manager</h1>
+        <form id="expenseForm">
+            <label for="expenseName">Expense Name:</label>
+            <input type="text" id="expenseName" class="expense-input" required>
+            <br>
+            <label for="expenseAmount">Amount:</label>
+            <input type="number" id="expenseAmount" class="expense-input" required>
+            <br>
+            <button type="button" class="add-expense-button" onclick="addExpense()">Add Expense</button>
+            <button type="button" class="clear-button" onclick="clearFields()">Clear</button>
+        </form>
+
+        <section>
+            <h2>Expense List</h2>
+            <table id="expenseTable">
+                <thead>
+                    <tr>
+                        <th>Expense Name</th>
+                        <th>Amount (₪)</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseList"></tbody>
+            </table>
+            <div class="total-expenses">
+                Total Expenses: ₪<span id="totalAmount">0.00</span>
+            </div>
+        </section>
+
+        <button type="button" class="clear-total-button" onclick="clearTotalExpenses()">Clear Total Expenses</button>
+    </div>
+
+    <!-- JavaScript code for Golani Brigade To-Do List -->
     <script>
-        // Wait for the DOM content to be fully loaded
-        document.addEventListener('DOMContentLoaded', function () {
-            // Get references to HTML elements
-            const todoInput = document.getElementById('todo-input');
-            const addBtn = document.getElementById('add-btn');
+        function addTask() {
+            const taskInput = document.querySelector('.todo-input');
             const taskList = document.getElementById('task-list');
 
-            // Retrieve tasks from local storage
-            const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            // Get the value from the input field
+            const taskText = taskInput.value.trim();
 
-            // Populate task list with saved tasks
-            savedTasks.forEach(taskText => {
-                addTaskToUI(taskText);
-            });
-
-            // Event listener for "Add" button click
-            addBtn.addEventListener('click', function () {
-                const taskText = todoInput.value.trim();
-                if (taskText !== '') {
-                    addTaskToUI(taskText);
-                    saveTasksToLocalStorage();
-                    todoInput.value = '';
-                }
-            });
-
-            // Event listener for "Enter" key press in the input field
-            todoInput.addEventListener('keyup', function (event) {
-                if (event.key === 'Enter') {
-                    const taskText = todoInput.value.trim();
-                    if (taskText !== '') {
-                        addTaskToUI(taskText);
-                        saveTasksToLocalStorage();
-                        todoInput.value = '';
-                    }
-                }
-            });
-
-            // Function to add a new task to UI
-            function addTaskToUI(taskText) {
-                const taskItem = document.createElement('li');
-                taskItem.className = 'task-item';
-                taskItem.innerHTML = `
+            if (taskText !== '') {
+                // Create a new list item
+                const newTask = document.createElement('li');
+                newTask.className = 'task-item';
+                newTask.innerHTML = `
                     <span>${taskText}</span>
                     <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
                 `;
-                taskList.appendChild(taskItem);
+
+                // Append the new task to the task list
+                taskList.appendChild(newTask);
+
+                // Clear the input field
+                taskInput.value = '';
+            }
+        }
+
+        // Function to delete a task
+        function deleteTask(button) {
+            const taskItem = button.parentNode;
+            taskItem.parentNode.removeChild(taskItem);
+        }
+    </script>
+
+    <!-- JavaScript code for Expense Manager -->
+    <script>
+        // Function to add an expense
+        function addExpense() {
+            const expenseName = document.getElementById('expenseName').value;
+            const expenseAmount = parseFloat(document.getElementById('expenseAmount').value);
+
+            if (isNaN(expenseAmount)) {
+                alert('Please enter a valid amount.');
+                return;
             }
 
-            // Function to delete a task
-            window.deleteTask = function (element) {
-                const taskItem = element.closest('.task-item');
-                taskList.removeChild(taskItem);
-                saveTasksToLocalStorage();
-            };
+            // Get existing expenses from local storage
+            const existingExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
 
-            // Function to save tasks to local storage
-            function saveTasksToLocalStorage() {
-                const tasks = Array.from(document.querySelectorAll('.task-item span')).map(span => span.textContent);
-                localStorage.setItem('tasks', JSON.stringify(tasks));
-            }
-        });
+            // Add the new expense to the array
+            existingExpenses.push({ name: expenseName, amount: expenseAmount });
+
+            // Save the updated expenses array to local storage
+            localStorage.setItem('expenses', JSON.stringify(existingExpenses));
+
+            // Clear input values
+            document.getElementById('expenseName').value = '';
+            document.getElementById('expenseAmount').value = '';
+
+            // Reload the expense list
+            loadExpenses();
+        }
+
+        // Function to update total expenses
+        function updateTotal() {
+            const totalAmountElement = document.getElementById('totalAmount');
+            const expenseAmounts = Array.from(document.querySelectorAll('#expenseList td:nth-child(2)'))
+                .map(td => parseFloat(td.textContent));
+
+            const totalAmount = expenseAmounts.reduce((total, amount) => total + amount, 0);
+            totalAmountElement.textContent = totalAmount.toFixed(2);
+        }
+
+        // Function to load expenses from local storage
+        function loadExpenses() {
+            const expenseList = document.getElementById('expenseList');
+            const existingExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+            // Clear existing rows
+            expenseList.innerHTML = '';
+
+            // Add new rows based on existing expenses
+            existingExpenses.forEach(expense => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${expense.name}</td>
+                    <td>${expense.amount.toFixed(2)}</td>
+                `;
+                expenseList.appendChild(newRow);
+            });
+
+            updateTotal(); // Update the total expenses
+        }
+
+        // Function to clear input fields
+        function clearFields() {
+            document.getElementById('expenseName').value = '';
+            document.getElementById('expenseAmount').value = '';
+        }
+
+        // Function to clear total expenses
+        function clearTotalExpenses() {
+            localStorage.removeItem('expenses');
+            loadExpenses(); // Reload the expense list
+        }
+
+        // Load expenses on page load
+        loadExpenses();
     </script>
 
     <!-- Footer with provided text -->
@@ -171,12 +288,16 @@ and JavaScript functionality.-->
         known for its strong roots that penetrate deep into the soil, symbolizes the brigade's strong connection to
         Israel's historical heritage. The yellow background serves as a reminder of the role the brigade played in the
         1948 war in the southern part of the country, where it successfully stormed Eilat, the southernmost city in
-        Israel. The first soldiers of the brigade were Jewish farmers and recent immigrants. The brown berets worn by the
-        soldiers symbolize the land of Israel, and their color sharply contrasts with the bright colors of berets worn by
+        Israel. The first soldiers of the brigade were Jewish farmers and recent immigrants. The brown berets worn by
+        the
+        soldiers symbolize the land of Israel, and their color sharply contrasts with the bright colors of berets worn
+        by
         soldiers from other infantry brigades in the Israel Defense Forces (IDF), such as purple, bright green, and red.
         The brigade received its distinctive berets as a recognition of the merits of soldiers from its special forces
         unit, Sayeret Golani, during the operation to free hostages at Entebbe Airport, Uganda, in 1976.
+        <p>Developed by Sergey Reizman 2024</p>
     </footer>
+
 </body>
 
 </html>

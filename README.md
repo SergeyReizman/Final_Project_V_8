@@ -1,3 +1,107 @@
+# 🏦 HooBank — Modern UI/UX Banking Platform  
+
+[![Frontend Deploy](https://img.shields.io/badge/Netlify-Deployed-success?logo=netlify)](https://sergeybank.netlify.app/)
+[![Backend Framework](https://img.shields.io/badge/Flask-Backend-blue?logo=flask)](https://flask.palletsprojects.com/)
+[![Frontend Framework](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)](https://react.dev/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/SergeyReizman/Final_Project_V_8/ci.yml?branch=main&logo=github)](https://github.com/SergeyReizman/Final_Project_V_8/actions)
+[![License](https://img.shields.io/github/license/SergeyReizman/Final_Project_V_8)](https://github.com/SergeyReizman/Final_Project_V_8/blob/main/LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue)](#)
+[![Database](https://img.shields.io/badge/SQLite-Database-blueviolet?logo=sqlite)](https://www.sqlite.org/index.html)
+[![Continuous Integration](https://img.shields.io/badge/CI/CD-Workflow-lightgrey?logo=githubactions)](#)
+
+---
+
+## 🌐 Overview  
+
+**HooBank** is a modern banking web platform built with **React**, **Vite**, **Tailwind CSS**, and a **Flask** backend.  
+It features a **Bank Management System** with secure APIs for **customers**, **accounts**, and **transactions**, plus robust **validation** and **continuous integration** using **GitHub Actions**.  
+
+🔗 **Project Specification Document (PSD):**  
+[➡️ View on Netlify](https://65b2bd17774d3328a0371504--preeminent-basbousa-497ee5.netlify.app/)
+
+---
+
+## ⚙️ Tech Stack  
+
+### 🖥️ Frontend  
+- **React.js** + **Vite** — Fast & lightweight development  
+- **Tailwind CSS** 3.4.1 — Responsive, utility-first styling  
+- **Axios** — API communication  
+
+### 🔧 Backend  
+- **Flask** — Microframework for Python  
+- **Flask-SQLAlchemy** — ORM integration  
+- **Flask-CORS** — Secure cross-origin requests  
+- **SQLite** — Local relational database  
+
+### 🧱 Build & Tools  
+- Node.js (v18+)  
+- GitHub Actions for CI/CD  
+- npm scripts for build & testing  
+
+---
+
+## 🚀 Project Setup  
+
+### 🖥️ Frontend  
+```bash
+git clone https://github.com/SergeyReizman/Final_Project_V_8.git
+cd frontend
+npm install
+npm install axios
+npm run dev
+
+
+cd backend
+python -m venv env
+.\env\Scripts\activate
+pip install -r requirements.txt
+python app.py
+
+
+name: CI
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm test
+
+
+.bg-primary: rgb(0, 4, 15)
+.bg-dimBlue: rgba(9, 151, 124, 0.1)
+.text-dimWhite: rgba(255, 255, 255, 0.7)
+
+
+frontend/
+ ├─ src/
+ │   ├─ components/
+ │   ├─ styles/
+ │   └─ index.jsx
+backend/
+ ├─ app.py
+ ├─ models/
+ ├─ migrations/
+ ├─ env/
+ └─ bank.db
+
+
+npm test
+
+
+
+
+---
+
+
+
 
 # HooBank - Modern UI/UX Website
 
